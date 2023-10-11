@@ -40,3 +40,26 @@ const getUserStatuses = () => {
     resolve(userStatuses);
   });
 };
+
+const mapUsers = (users, userStatuses) => {
+
+  return users.map(user => {
+
+    const isActive = userStatuses.find(userStatus => userStatus.id === user.id).isActive;
+
+    return { ...user, isActive };
+
+  })
+}
+
+Promise.all([getUsers(), getUserStatuses()])
+  .then(([users, userStatuses]) => {
+
+    const mappedUsers = mapUsers(users,userStatuses);
+    console.log(mappedUsers);
+
+  })
+  .catch(err => {
+
+    console.log(err);
+  })

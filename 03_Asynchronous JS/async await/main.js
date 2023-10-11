@@ -41,3 +41,30 @@ const getUserStatuses = () => {
     resolve(userStatuses);
   });
 };
+
+const getMappedUsers = async () => {
+
+  try {
+
+    const users = await getUsers();
+    const userStatuses = await getUserStatuses();
+
+    const mappedUsers = (users, userStatuses) => {
+
+      return users.map(user => {
+
+        const isActive = userStatuses.find(userStatus => userStatus.id === user.id).isActive;
+
+        return { ...user, isActive };
+
+      })
+    }
+
+    console.log(mappedUsers(users,userStatuses));
+
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+getMappedUsers();

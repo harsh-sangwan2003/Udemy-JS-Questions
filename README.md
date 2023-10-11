@@ -24,5 +24,3 @@ Please install the following npm packages before running the script
 - npm
 
 ## Usage
-
-This repo contains JavaScript interview Questions.
